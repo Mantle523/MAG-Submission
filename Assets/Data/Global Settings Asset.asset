@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a9aa7e40c2e3f45b2b32af43f074d3, type: 3}
+  m_Name: Global Settings Asset
+  m_EditorClassIdentifier: 
+  tileColours:
+  - {r: 0, g: 0.56861687, b: 1, a: 1}
+  - {r: 0.6415094, g: 0.033285867, b: 0.033285867, a: 1}
+  - {r: 0.12967247, g: 0.5849056, b: 0.13967048, a: 1}
+  - {r: 0.8070162, g: 0.8301887, b: 0.05873976, a: 1}
+  minAdjacents: 3
+  startingCount: 72
