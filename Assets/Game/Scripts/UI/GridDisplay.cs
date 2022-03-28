@@ -45,7 +45,13 @@ public class GridDisplay : MonoBehaviour
 
         foreach (Vector2Int match in matches)
         {
-            gridContentDisplay[match.x, match.y].Hide();
+            TileDisplay td = gridContentDisplay[match.x, match.y];
+            td.Hide();
+
+            //Add to the pool of spare tileDIsplays
+            tileDisplayPool.Add(td);
+
+            gridContentDisplay[match.x, match.y] = null;
         }
 
         //Retrieves the co-ordinates of tiles that need to be moved to fill the gaps
@@ -162,6 +168,28 @@ public class GridDisplay : MonoBehaviour
         float ySize = yMaxSize - (2 * tileSpacing.y);
 
         rt.sizeDelta = new Vector2(xSize,ySize);
+
+    }
+
+    void AddTileFromPool(Tile tile)
+    {
+        if (tileDisplayPool.Count == 0)
+        {
+            Debug.Log("Attempted to add a tile but pool was empty");
+        }
+
+        TileDisplay pooledTileDisplay = tileDisplayPool[0];
+
+        tileDisplayPool.Remove(pooledTileDisplay);        
+
+        //Add it to content display
+        gridContentDisplay[tile.currentPos.x, tile.currentPos.y] = pooledTileDisplay;
+        pooledTileDisplay.Display(tile, this);
+
+        //Place the newly created tile correctly on the grid display
+        RectTransform tileRectTransform = pooledTileDisplay.GetRectTransform();
+        Vector2 posOnGrid = CoordToGridPosition(tile.currentPos.x, tile.currentPos.y);
+        tileRectTransform.anchoredPosition = posOnGrid;
 
     }
 }
